@@ -21,8 +21,8 @@ def play():
         PLAY_RECT = PLAY_TEXT.get_rect(center=(640, 260))
         SCREEN.blit(PLAY_TEXT, PLAY_RECT)
 
-        PLAY_BACK = Button(image=None, pos=(640, 460), 
-                            text_input="BACK", font=get_font(60), base_color="White", hovering_color="Green")
+        PLAY_BACK = Button(image=None, pos=(100, 35), 
+                            text_input="BACK", font=get_font(25), base_color="White", hovering_color="Green")
 
         PLAY_BACK.changeColor(PLAY_MOUSE_POS)
         PLAY_BACK.update(SCREEN)
@@ -44,6 +44,7 @@ def options():
 
         SCREEN.fill("white")
 
+        p1_character = " "
         p1_select = False
         p2_select = False
         char_select = False
@@ -91,7 +92,7 @@ def options():
 
         OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
         OPTIONS_BACK.update(SCREEN)
-        
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -99,21 +100,42 @@ def options():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                     main_menu()
+                    
                 if DENJI_SELECT.checkForInput(OPTIONS_MOUSE_POS):
-                    DEN_CHOOSE_TEXT = get_font(40).render("PLAYER 1: DENJI", True, "Black")
-                    DEN_CHOOSE_RECT = DEN_CHOOSE_TEXT.get_rect(midbottom=(640, 600))
                     p1_select == True
+                    p1_character == "DENJI"
+                    
                 if AKI_SELECT.checkForInput(OPTIONS_MOUSE_POS):
-                    AKI_CHOOSE_TEXT = get_font(40).render("PLAYER 1: AKI", True, "Black")
-                    AKI_CHOOSE_RECT = AKI_CHOOSE_TEXT.get_rect(midbottom=(640, 600))
                     p1_select == True
+                    p1_character == "AKI"
+                    
                 if POWER_SELECT.checkForInput(OPTIONS_MOUSE_POS):
-                    POW_CHOOSE_TEXT = get_font(40).render("PLAYER 1: POWER", True, "Black")
-                    POW_CHOOSE_RECT = POW_CHOOSE_TEXT.get_rect(midbottom=(640, 600))                        
                     p1_select == True
+                    p1_character == "POWER"
+
+        if p1_character == "POWER":
+            POW_CHOOSE_TEXT = get_font(40).render("PLAYER 1: POWER", True, "Black")
+            POW_CHOOSE_RECT = POW_CHOOSE_TEXT.get_rect(midbottom=(640, 600))
+            SCREEN.blit(POW_CHOOSE_TEXT, POW_CHOOSE_RECT)
+            pygame.display.update()
+            options()
+
+        if p1_character == "AKI":
+            AKI_CHOOSE_TEXT = get_font(40).render("PLAYER 1: AKI", True, "Black")
+            AKI_CHOOSE_RECT = AKI_CHOOSE_TEXT.get_rect(midbottom=(640, 600))
+            SCREEN.blit(AKI_CHOOSE_TEXT, AKI_CHOOSE_RECT)
+            pygame.display.update()
+            options()
+
+        if p1_character == "DENJI":
+            DEN_CHOOSE_TEXT = get_font(40).render("PLAYER 1: DENJI", True, "Black")
+            DEN_CHOOSE_RECT = DEN_CHOOSE_TEXT.get_rect(midbottom=(640, 600))
+            SCREEN.blit(DEN_CHOOSE_TEXT, DEN_CHOOSE_RECT)
+            pygame.display.update()
+            options()  
 
         pygame.display.update()
-                        
+                     
 
 
 def main_menu():
@@ -128,7 +150,7 @@ def main_menu():
         PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 250), 
                             text_input="PLAY", font=get_font(60), base_color="#fdfd96", hovering_color="White")
         OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400), 
-                            text_input="CHARACTERS", font=get_font(60), base_color="#fdfd96", hovering_color="White")
+                            text_input="FIGHTERS", font=get_font(60), base_color="#fdfd96", hovering_color="White")
         QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(640, 550), 
                             text_input="QUIT", font=get_font(60), base_color="#fdfd96", hovering_color="White")
 
