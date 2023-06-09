@@ -56,12 +56,12 @@ while RUN:
 
     keys = pygame.key.get_pressed()
 
-    if keys[pygame.K_LEFT] and x > VEL:
+    if keys[pygame.K_a] and x > VEL:
         x -= VEL
         LEFT = True
         RIGHT = False
 
-    elif keys[pygame.K_RIGHT] and x < 500 - VEL:
+    elif keys[pygame.K_d] and x < 500 - VEL:
         x += VEL
         LEFT = False
         RIGHT = True
@@ -70,20 +70,6 @@ while RUN:
         LEFT = False
         RIGHT = False
         WALK_COUNT = 0
-
-    if not(IS_JUMP):
-        if keys[pygame.K_SPACE]:
-            IS_JUMP = True
-            LEFT = False
-            RIGHT = False
-            WALK_COUNT = 0
-    else:
-        if JUMP_COUNT >= -10:
-            y -= (JUMP_COUNT * abs(JUMP_COUNT)) * 0.5
-            JUMP_COUNT -= 1
-        else:
-            JUMP_COUNT = 10
-            IS_JUMP = False
 
     redrawGameWindow()
 
